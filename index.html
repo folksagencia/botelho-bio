@@ -309,7 +309,11 @@
 
   /* RODAPÉ */
   .rodape{background:var(--preto);padding-block:34px calc(34px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--linha)}
-  .rodape .miolo{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+  .rodape .miolo{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+  .rodape-icones{display:flex;justify-content:center;gap:12px;padding-top:20px;border-top:1px solid var(--linha);width:100%;max-width:320px}
+  .ig svg{width:20px;height:20px}
+  .copy{font-size:.72rem;color:#7A7A7A}
+  .rodape .local{font-size:.86rem;color:#CFCFCF;justify-content:center}
   .rodape img{width:150px;height:auto}
   .rodape-linha{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:.82rem;color:#CFCFCF;font-weight:300}
   .ig{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);transition:transform .2s,background .2s,border-color .2s}
@@ -552,17 +556,20 @@
   .energia svg{width:100%;height:100%;display:block;overflow:visible}
   .energia path{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
   .en-base{stroke:rgba(255,255,255,.14);stroke-width:1.5}
-  .en-faisca{stroke:var(--laranja);stroke-width:2.6;stroke-dasharray:.09 .91;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(254,102,0,.95)) drop-shadow(0 0 10px rgba(254,102,0,.6));animation:corrente 3.4s cubic-bezier(.45,.05,.55,.95) infinite}
+  .en-faisca{stroke:var(--laranja);stroke-width:2.6;stroke-dasharray:.09 .91;stroke-dashoffset:1;animation:corrente 3.4s cubic-bezier(.45,.05,.55,.95) infinite}
+  .hero .en-faisca{animation-direction:reverse}
   .en-faisca.dois{stroke:#FFD2B0;stroke-width:1.6;stroke-dasharray:.03 .97;animation-delay:1.7s;animation-duration:3.4s}
   @keyframes corrente{from{stroke-dashoffset:1}to{stroke-dashoffset:-.09}}
   /* Capa liga como um gerador partindo */
   .hero-bg img{animation:capaZoom 2.6s cubic-bezier(.22,1,.36,1) forwards,liga 1.5s .15s linear both}
   @keyframes liga{0%{filter:brightness(.12) saturate(.4)}10%{filter:brightness(.9)}13%{filter:brightness(.18)}22%{filter:brightness(1.05)}25%{filter:brightness(.35)}34%{filter:brightness(1.15) saturate(1.1)}60%,100%{filter:brightness(1) saturate(1)}}
-  .hero .pilulas .pilula.laranja{animation:entraPilula .7s .46s cubic-bezier(.22,1,.36,1) forwards,neon 2.2s 1.1s linear forwards}
+  .hero .pilulas .pilula.laranja{animation:entraPilula .7s .46s cubic-bezier(.22,1,.36,1) forwards,neon 2.2s 1.1s linear forwards,neonLoop 7s 4s linear infinite}
+  @keyframes neonLoop{0%,88%,100%{box-shadow:0 0 38px -4px rgba(254,102,0,.65)}90%,93%{box-shadow:0 0 0 rgba(254,102,0,0)}91.5%,95%{box-shadow:0 0 46px rgba(254,102,0,.95)}}
   @keyframes neon{0%,6%,10%,16%{box-shadow:0 0 0 rgba(254,102,0,0)}3%,8%,13%{box-shadow:0 0 34px rgba(254,102,0,.9)}100%{box-shadow:0 0 38px -4px rgba(254,102,0,.65)}}
   .hero-acoes .btn-contorno svg{animation:raio 3.2s 2s infinite}
   @keyframes raio{0%,86%,100%{opacity:1;filter:none}88%{opacity:.2}90%{opacity:1;filter:drop-shadow(0 0 6px #FE6600)}92%{opacity:.3}94%{opacity:1;filter:drop-shadow(0 0 8px #FE6600)}}
-  .plantao i{box-shadow:0 0 8px #FE6600}
+  .plantao i{background:#2BE36B!important;box-shadow:0 0 8px #2BE36B;animation:pingVerde 1.8s infinite!important}
+  @keyframes pingVerde{0%{box-shadow:0 0 0 0 rgba(43,227,107,.7)}70%{box-shadow:0 0 0 9px rgba(43,227,107,0)}100%{box-shadow:0 0 0 0 rgba(43,227,107,0)}}
   /* Ícones dos serviços dão um pico ao passar o mouse */
   .serv:hover .serv-ico,.serv-loc:hover .loc-ico{animation:pico .5s linear}
   @keyframes pico{0%,100%{filter:none}20%{filter:brightness(1.6) drop-shadow(0 0 10px rgba(254,102,0,.9))}35%{filter:brightness(.7)}55%{filter:brightness(1.5) drop-shadow(0 0 14px rgba(254,102,0,.9))}}
@@ -589,7 +596,11 @@
     .hero .pilulas{gap:6px}
     .hero .pilulas .pilula{font-size:clamp(1.6rem,8vw,2.4rem)}
     .hero-texto{font-size:.98rem}
-    .hero-dados{margin-top:6px}
+    .hero-dados{margin-top:0;background:none;border:none;border-radius:0;grid-template-columns:repeat(3,1fr);gap:0}
+    .dado{padding:0 6px!important;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .dado+.dado{border-left:1px solid var(--linha)}
+    .dado b{font-size:1.15rem}
+    .dado span{font-size:.68rem;margin-top:2px;white-space:nowrap}
     .cinetico{display:none}
     .serv-topo{margin-bottom:6px}
     .serv-lista{gap:20px}
@@ -615,6 +626,111 @@
     .evento-grade{gap:30px}
     .banda{font-size:.92rem}
   }
+
+  /* Evento: referência do card do show */
+  .ev{position:relative;overflow:hidden;background:#0A0A0A;isolation:isolate}
+  .ev::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(38% 45% at 92% 52%,rgba(40,80,200,.55),transparent 70%),radial-gradient(30% 40% at 70% 92%,rgba(200,30,30,.45),transparent 70%),radial-gradient(22% 28% at 78% 18%,rgba(255,255,255,.18),transparent 70%),radial-gradient(18% 22% at 98% 80%,rgba(254,102,0,.35),transparent 70%);filter:blur(10px);animation:palco 6s ease-in-out infinite alternate}
+  @keyframes palco{0%{opacity:.75}30%{opacity:1}34%{opacity:.6}38%{opacity:1}70%{opacity:.85}100%{opacity:1}}
+  .ev-foto{position:relative;height:min(132vw,560px);overflow:hidden}
+  .ev-foto img{width:100%;height:100%;object-fit:cover;object-position:30% 42%;display:block;transform:scale(1.08);transition:transform 1.8s cubic-bezier(.22,1,.36,1)}
+  .ev.visto .ev-foto img{transform:none}
+  .ev-foto::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,0) 55%,#0A0A0A 100%)}
+  .ev-miolo{position:relative;z-index:1;margin-top:-90px;padding-bottom:40px}
+  .ev-txt{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:18px}
+  .ev-titulo{font-weight:800;font-style:italic;font-size:clamp(1.7rem,7.6vw,3rem);line-height:1.12;letter-spacing:.005em;color:#fff;max-width:15ch;text-shadow:0 0 18px rgba(255,255,255,.35)}
+  .ev-sub{font-size:clamp(1.05rem,4.6vw,1.6rem);line-height:1.4;color:#fff;max-width:20ch;text-shadow:0 0 14px rgba(255,255,255,.25)}
+  .ev-cta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:13px 26px;border-radius:999px;border:1.5px solid rgba(255,255,255,.75);color:#fff;font-size:1.05rem;font-weight:500;transition:background .25s,border-color .25s,transform .25s}
+  .ev-cta b{color:var(--laranja);font-weight:700}
+  .ev-cta svg{width:18px;height:18px;transition:transform .2s}
+  .ev-cta:hover{border-color:var(--laranja);background:rgba(254,102,0,.1)}
+  .ev-cta:hover svg{transform:translateX(4px)}
+  .ev-barra{background:linear-gradient(90deg,#000 0%,#1A1A1A 60%,#3A3A3A 100%);padding-block:14px}
+  .ev-barra .miolo{display:flex;flex-wrap:nowrap;justify-content:center;gap:8px;font-weight:700;font-size:clamp(.66rem,3.05vw,.9rem);color:#fff;white-space:nowrap;letter-spacing:-.01em}
+  .ev-barra span{display:inline-flex;align-items:center;gap:8px}
+  .ev-barra span+span::before{content:'';width:4px;height:4px;border-radius:50%;background:#fff}
+  @media (min-width:960px){
+    .ev{min-height:720px;display:flex;flex-direction:column;justify-content:flex-end}
+    .ev-foto{position:absolute;left:0;top:0;bottom:0;height:auto;width:min(48%,560px)}
+    .ev-foto img{object-position:20% 40%}
+    .ev-foto::after{background:linear-gradient(90deg,rgba(10,10,10,0) 40%,rgba(10,10,10,.75) 80%,#0A0A0A 100%),linear-gradient(0deg,#0A0A0A 0%,rgba(10,10,10,0) 18%)}
+    .ev-miolo{margin-top:0;padding-block:110px 70px}
+    .ev-txt{margin-left:auto;max-width:600px;gap:24px}
+    .ev-titulo{font-size:3.2rem}
+    .ev-sub{font-size:1.85rem}
+    .ev-barra{position:relative;z-index:1}
+    .ev-barra .miolo{justify-content:flex-end;font-size:1.15rem;gap:12px 16px}
+  }
+  /* Bases clicáveis */
+  .base{text-align:left;color:var(--tinta);display:flex;flex-direction:column;gap:2px;transition:transform .2s,border-color .2s,box-shadow .2s}
+  .base:hover{transform:translateY(-3px);border-color:var(--laranja);box-shadow:0 14px 26px -16px rgba(254,102,0,.6)}
+  .base i{font-style:normal;margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--laranja)}
+  .base i svg{width:14px;height:14px}
+  .mapa .alvo{cursor:pointer}
+  .mapa .alvo:hover rect{fill:var(--laranja)}
+  .mapa .alvo:hover text{fill:#fff}
+  .selo-foto{background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:0!important;color:#E8E8E8;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+  /* Desempenho: animações pausam fora da tela e sem desfoque no celular */
+  .fora,.fora *,.ev.fora::before{animation-play-state:paused!important}
+  @media (max-width:959px){.plantao,.banda,.toast{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.plantao{background:rgba(14,14,14,.82)}}
+
+  /* Gerador da capa: painel, ficha técnica e cabo de energia */
+  .hero-grade{z-index:2}
+  .gen{position:absolute;inset:0;z-index:1;pointer-events:none}
+  .gen svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .gen path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .gen .g-linha{stroke:#fff;stroke-width:1.3;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);opacity:.9;transition:stroke-dashoffset 1s cubic-bezier(.65,0,.35,1)}
+  .gen.on .g-linha{stroke-dashoffset:0}
+  .gen .g-ponto{fill:var(--laranja);stroke:#fff;stroke-width:2;opacity:0;transition:opacity .3s}
+  .gen.on .g-ponto{opacity:1}
+  .gen .g-anel{fill:none;stroke:var(--laranja);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pinPulso 2.2s ease-out infinite}
+  .gen .g-cabo{stroke:rgba(255,255,255,.18);stroke-width:1.6}
+  .gen .g-cabo-f{stroke:var(--laranja);stroke-width:2.6;stroke-dasharray:.1 .9;stroke-dashoffset:1;opacity:0;transition:opacity .6s}
+  .gen.on .g-cabo-f{opacity:1;animation:corrente 2.6s linear infinite}
+  .gen .g-raio{stroke-dasharray:.07 .93;stroke-width:3}
+  .gen.on .g-raio{animation:corrente 4.2s cubic-bezier(.5,0,.5,1) infinite}
+  .gen .g-contorno{stroke:#FFB37A;stroke-width:2;opacity:0}
+  .gen.on .g-contorno{animation:surto 4.2s linear infinite}
+  @keyframes surto{0%,58%,100%{opacity:0}60%{opacity:.9}62%{opacity:.1}64%{opacity:.75}68%{opacity:0}}
+  .g-tag{position:absolute;white-space:nowrap;padding:6px 12px;border-radius:999px;background:rgba(10,10,10,.82);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:.74rem;font-weight:600;letter-spacing:.02em;display:flex;align-items:center;gap:7px;opacity:0;transform:translateY(6px);transition:opacity .5s .7s,transform .5s .7s}
+  .g-tag i{width:6px;height:6px;border-radius:50%;background:var(--laranja);box-shadow:0 0 8px var(--laranja)}
+  .gen.on .g-tag{opacity:1;transform:none}
+  .g-lcd{position:absolute;border-radius:2px;background:linear-gradient(180deg,#FF8A2B,#FE6600);box-shadow:0 0 10px 2px rgba(254,102,0,.85),0 0 26px 6px rgba(254,102,0,.45);opacity:0;overflow:hidden}
+  .g-lcd::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);animation:varre 1.6s linear infinite}
+  @keyframes varre{to{background-position:0 12px}}
+  .gen.on .g-lcd{animation:lcdLiga 1.1s linear forwards}
+  @keyframes lcdLiga{0%{opacity:0}12%{opacity:1}18%{opacity:.1}30%{opacity:1}36%{opacity:.3}50%,100%{opacity:1}}
+  .g-hud{position:absolute;top:0;left:0;min-width:150px;padding:10px 12px 11px;border-radius:14px;background:rgba(10,10,10,.86);border:1px solid rgba(254,102,0,.55);box-shadow:0 0 0 1px rgba(254,102,0,.15),0 18px 34px -16px rgba(0,0,0,.9),0 0 30px -8px rgba(254,102,0,.55);color:#fff;font-size:.7rem;line-height:1.35;font-variant-numeric:tabular-nums;opacity:0;transform:translateY(8px) scale(.96);transform-origin:left bottom;transition:opacity .45s .55s,transform .45s .55s}
+  .gen.on .g-hud{opacity:1;transform:none}
+  .g-hud b{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.66rem;letter-spacing:.16em;color:var(--laranja);font-weight:700}
+  .g-hud b span{display:inline-flex;align-items:center;gap:5px;color:#7CFFA0;letter-spacing:.08em}
+  .g-hud b span::before{content:'';width:6px;height:6px;border-radius:50%;background:#2BE36B;box-shadow:0 0 8px #2BE36B;animation:led 1.6s infinite}
+  .g-hud .h-num{display:flex;justify-content:space-between;gap:12px;margin-top:5px;font-weight:600;font-size:.82rem}
+  .g-hud .h-barra{margin-top:7px;height:4px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
+  .g-hud .h-barra i{display:block;height:100%;width:68%;background:linear-gradient(90deg,#FE6600,#FFB37A);border-radius:inherit;transition:width .9s ease}
+  .g-hud small{display:flex;justify-content:space-between;margin-top:4px;color:#BDBDBD;font-size:.62rem}
+  @media (max-width:959px){
+    .g-hud{min-width:118px;padding:7px 9px 8px;border-radius:11px;font-size:.6rem}
+    .g-hud .h-num{font-size:.7rem}
+    .g-tag{font-size:.64rem;padding:5px 9px}
+  }
+  @media (prefers-reduced-motion:reduce){.gen .g-linha{stroke-dashoffset:0}.gen.on .g-cabo-f{animation:none;stroke-dashoffset:.5}}
+
+  /* Desempenho: brilho sem filtros, camadas próprias */
+  .en-brilho{stroke-width:10!important;stroke-opacity:.28}
+  .hero .en-brilho{animation-direction:reverse}
+  .gen .g-brilho{stroke-width:11;stroke-opacity:.3}
+  .gen .g-contorno.g-largo{stroke:var(--laranja);stroke-width:10;stroke-opacity:.35}
+  .gen{will-change:transform;contain:layout paint}
+  .energia{will-change:transform;contain:paint}
+  .fios svg{will-change:transform}
+  .ev::before{filter:none!important;will-change:opacity}
+  .btn-contorno{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(14,14,14,.55)!important}
+  .hero-bg img{animation:capaZoom 2.6s cubic-bezier(.22,1,.36,1) forwards!important;will-change:transform}
+  .hero-bg::before{content:'';position:absolute;inset:0;z-index:1;background:#000;pointer-events:none;opacity:0;animation:ligaVeu 1.5s .15s linear both,picoCapa 7s 4s linear infinite;will-change:opacity}
+  @keyframes ligaVeu{0%{opacity:.88}10%{opacity:.1}13%{opacity:.82}22%{opacity:0}25%{opacity:.65}34%{opacity:0}100%{opacity:0}}
+  @keyframes picoCapa{0%,88%,100%{opacity:0}90%{opacity:.55}91.5%{opacity:0}93%{opacity:.35}95%{opacity:0}}
+  .hero-bg::after{z-index:2}
+  @media (prefers-reduced-motion:reduce){.hero-bg::before{animation:none}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -632,6 +748,7 @@
   <div class="hero-bg" aria-hidden="true">
     <img src="assets/capa-1800.webp" srcset="assets/capa-1200.webp 1200w, assets/capa-1800.webp 1800w, assets/capa-2576.webp 2576w" sizes="(min-width:960px) 100vw, 160vw" alt="" width="2576" height="1717" fetchpriority="high" decoding="async">
   </div>
+  <div class="gen" id="gen" aria-hidden="true"></div>
   <span class="selo-foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.1 8.2-7.5 9.5-4.4-1.3-7.5-5-7.5-9.5V6z"/><path d="M8.8 12l2.3 2.3 4.2-4.6"/></svg>Distribuidor Geraforte</span>
   <svg class="curva visto-auto" style="left:-90px;bottom:-60px;width:300px" viewBox="0 0 300 300" aria-hidden="true"><path pathLength="1" d="M40 30v150c0 60 40 90 100 90h150" stroke-width="56"/></svg>
   <div class="miolo hero-grade">
@@ -650,11 +767,11 @@
         </a>
       </div>
     </div>
-    <div class="energia" aria-hidden="true"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path class="en-base" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca dois" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/></svg></div>
+    <div class="energia" aria-hidden="true"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path class="en-base" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca en-brilho" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca dois" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/></svg></div>
     <div class="hero-dados">
-      <div class="dado"><b><em data-conta="24">24</em>h</b><span>Atendimento e suporte técnico</span></div>
-      <div class="dado"><b><i class="num" data-conta="100">100</i><em>%</em></b><span>Equipe própria, sem terceiros</span></div>
-      <div class="dado"><b><em data-conta="2">2</em></b><span>Bases: Fortaleza e Barbalha</span></div>
+      <div class="dado"><b><em data-conta="24">24</em>h</b><span>Suporte técnico</span></div>
+      <div class="dado"><b><i class="num" data-conta="100">100</i><em>%</em></b><span>Equipe própria</span></div>
+      <div class="dado"><b><em data-conta="2">2</em></b><span>Bases no Ceará</span></div>
     </div>
   </div>
 </section>
@@ -697,33 +814,16 @@
   </div>
 </section>
 
-<section class="sec evento" id="eventos">
-  <div class="fios" data-fios="esquerda"></div>
-  <div class="miolo evento-grade">
-    <div class="evento-txt revela">
-      <div class="pilulas">
-        <span class="pilula clara">Vai realizar</span>
-        <span class="pilula clara">um evento?</span>
-        <span class="pilula laranja">Garanta a</span>
-        <span class="pilula laranja">energia que</span>
-        <span class="pilula laranja">ele precisa</span>
-      </div>
-    </div>
-    <div class="evento-midia">
-      <div class="bandas">
-        <div class="banda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Geradores preparados para operar com eficiência e segurança.</div>
-        <div class="banda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Equipe técnica especializada disponível durante todo o evento.</div>
-        <div class="banda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Entrega e instalação no local.</div>
-      </div>
-    </div>
-    <div class="evento-rodape revela">
-      <p><span>Você foca no evento,</span><b>nós cuidamos da energia.</b></p>
-      <button class="btn btn-laranja" onclick="preencheServico('Locação de gerador');abrir('modalOrc')" data-evento="orcamento_evento">Fale conosco! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+<section class="ev" id="eventos">
+  <div class="ev-foto"><img src="assets/evento.webp" alt="Público filmando um show com o celular" width="488" height="1030" loading="lazy" decoding="async"></div>
+  <div class="miolo ev-miolo">
+    <div class="ev-txt">
+      <h2 class="ev-titulo revela">Seu evento não pode parar por falta de energia.</h2>
+      <p class="ev-sub revela">Geradores para festas, casamentos, shows e eventos corporativos.</p>
+      <button class="ev-cta revela" type="button" onclick="preencheServico('Locação de gerador');abrir('modalOrc')">Solicite <b>orçamento gratuito</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </div>
-  <div class="miolo z1">
-    <div class="barra-marca revela"><span>Equipe própria</span><span>Técnicos especializados</span><span>Suporte 24h</span></div>
-  </div>
+  <div class="ev-barra"><div class="miolo"><span>+21 anos de experiência</span><span>Técnicos certificados</span><span>Suporte 24h</span></div></div>
 </section>
 
 <div class="cinetico" aria-hidden="true">
@@ -799,8 +899,8 @@
       <h2 class="titulo-sec">Do litoral ao Cariri, <em>sem deixar parar.</em></h2>
       <p class="sub-sec">Bases em Fortaleza e em Barbalha para atender o Ceará de ponta a ponta.</p>
       <div class="bases-cards">
-        <div class="base"><b>Fortaleza</b><span>Capital e Região Metropolitana</span></div>
-        <div class="base"><b>Barbalha</b><span>Cariri e interior do estado</span></div>
+        <button class="base" type="button" data-cidade="Fortaleza"><b>Fortaleza</b><span>Capital e Região Metropolitana</span><i>Solicitar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
+        <button class="base" type="button" data-cidade="Barbalha"><b>Barbalha</b><span>Cariri e interior do estado</span><i>Solicitar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
       </div>
     </div>
     <div class="mapa revela" role="img" aria-label="Mapa do Ceará com as bases da Botelho em Fortaleza e Barbalha">
@@ -820,7 +920,6 @@
         </g>
         <path d="M146.8 25.1L149.9 26.4L148.2 25.5L149.1 25.5L156.6 28.6L169.4 37.2L171.3 36.8L173.8 38.9L175.0 38.6L176.4 39.1L178.6 42.4L181.5 43.1L183.6 44.8L186.1 46.0L187.8 47.7L191.1 48.7L193.8 50.9L195.2 50.1L196.7 50.6L198.2 52.2L200.2 53.2L203.5 53.7L205.5 55.3L209.7 61.2L211.9 62.9L213.9 63.0L216.1 66.4L219.3 67.8L221.7 66.7L222.6 66.7L226.8 70.7L229.0 74.7L230.3 74.7L233.2 77.4L234.6 77.8L236.2 77.4L239.8 82.2L244.1 84.6L246.9 87.4L249.0 88.3L253.3 88.8L256.2 90.4L259.4 91.1L261.0 90.7L261.4 89.8L269.3 102.8L273.9 107.4L274.3 107.3L274.1 106.9L276.2 107.6L282.0 114.5L287.6 122.4L295.3 129.9L307.3 139.8L310.6 141.2L313.4 141.4L313.8 143.0L313.4 143.3L314.7 144.5L316.4 148.5L326.5 158.1L330.4 159.5L333.4 158.1L335.3 159.8L346.3 163.8L349.6 167.7L351.7 173.5L323.0 180.5L320.2 189.9L316.8 191.1L316.1 193.4L313.7 196.3L312.9 199.9L311.9 201.6L312.4 204.0L311.8 205.5L312.4 207.9L307.6 211.2L306.5 214.0L306.7 216.2L304.7 219.1L303.6 223.0L302.4 223.5L301.3 223.4L300.3 225.5L297.1 227.3L296.4 229.5L295.3 230.2L293.8 233.4L290.2 236.0L289.7 240.1L290.9 239.8L292.8 240.3L292.0 242.2L287.5 247.9L287.1 252.0L284.2 255.1L284.1 256.3L281.1 257.7L278.2 260.3L277.1 264.3L273.7 266.8L272.6 266.1L271.4 266.3L270.6 265.3L270.6 266.3L269.3 266.9L267.8 265.2L267.9 264.3L265.7 264.7L263.2 266.7L263.5 267.6L262.5 268.4L261.0 271.1L261.3 271.7L259.2 273.7L259.2 274.5L257.3 274.7L257.1 276.2L257.8 276.9L257.2 278.0L255.9 278.6L255.3 279.9L253.5 281.2L254.4 282.9L253.3 283.9L253.2 285.0L253.6 286.2L254.5 286.8L253.7 287.4L253.9 288.2L252.8 288.3L251.7 289.3L253.9 290.4L256.1 290.2L257.1 289.6L258.0 290.8L257.5 290.6L255.3 292.5L255.1 293.6L254.1 294.2L254.1 295.3L251.0 298.5L250.7 299.6L251.2 300.0L248.7 303.6L249.7 305.3L247.8 307.2L248.4 309.7L248.0 310.4L247.3 310.5L246.5 312.2L247.1 314.2L247.7 314.7L248.1 316.9L250.8 318.6L250.6 319.4L248.8 319.2L249.3 320.2L248.2 320.5L246.2 322.3L246.7 323.1L246.3 324.5L243.4 325.6L243.4 326.3L242.3 326.3L242.2 327.1L239.6 328.1L240.4 330.2L239.6 330.9L241.0 331.8L241.3 332.9L239.7 334.3L245.1 336.9L245.2 337.7L246.7 338.3L246.2 339.7L247.7 341.6L246.2 344.5L246.3 346.3L245.6 346.7L246.2 347.3L245.4 348.9L248.6 348.4L249.2 349.1L249.9 349.0L250.7 351.9L251.8 352.2L252.2 353.1L255.4 352.8L255.4 354.3L256.2 354.6L256.7 356.6L255.6 358.2L255.6 359.6L254.8 361.4L252.2 365.6L253.0 365.7L253.0 367.1L252.2 367.0L251.5 367.8L251.6 368.8L248.6 369.0L249.5 370.8L247.8 373.6L247.8 376.8L243.7 378.4L243.2 381.4L241.8 381.9L241.3 383.9L240.0 383.5L237.9 384.6L235.6 384.2L235.3 385.2L236.0 386.6L234.8 388.3L231.9 387.7L231.1 388.7L231.0 390.3L228.5 390.1L228.5 391.2L227.6 390.8L226.7 391.2L226.3 392.9L226.7 393.9L224.8 396.5L225.2 397.2L224.8 397.6L222.1 397.2L220.9 395.3L220.3 396.1L218.3 395.7L217.4 397.2L215.5 398.6L215.1 398.1L215.8 396.9L215.5 394.9L214.6 392.1L212.2 388.5L209.6 387.9L206.8 386.0L203.5 387.2L203.6 385.4L202.1 383.9L199.5 384.2L199.2 383.5L199.8 382.8L199.8 381.5L201.2 379.7L201.7 379.9L200.3 379.1L199.1 377.1L198.7 375.0L192.9 370.1L186.8 367.9L185.3 365.9L180.0 362.6L177.3 359.7L174.2 358.8L173.2 357.8L166.1 358.6L163.8 359.4L159.2 358.9L156.3 360.0L154.4 359.9L151.0 363.7L142.3 364.5L129.9 367.0L128.0 363.9L124.5 362.6L116.9 363.8L107.5 363.9L108.1 359.5L110.2 357.2L110.4 351.6L112.3 344.6L111.9 343.6L116.5 337.3L115.8 335.9L116.5 336.1L118.1 335.1L116.4 334.3L116.4 324.6L119.5 322.0L120.7 320.1L119.4 319.6L117.3 320.8L116.2 320.8L112.9 315.0L103.2 313.5L100.0 310.8L95.6 310.6L94.0 309.0L94.7 306.3L93.7 305.0L92.9 302.4L89.5 298.5L89.2 292.2L88.5 289.6L90.4 285.9L90.3 284.5L89.9 283.0L88.1 281.7L87.2 279.6L85.0 277.0L85.4 270.2L83.5 264.5L82.7 263.9L81.3 264.0L81.0 263.4L81.2 261.9L83.4 258.5L83.0 254.3L81.7 253.0L82.0 251.7L81.1 249.1L80.8 242.9L80.2 241.4L80.5 240.0L78.6 236.0L80.7 234.8L81.4 231.8L80.4 228.2L79.1 226.8L79.1 223.2L80.3 220.6L78.4 217.2L80.2 216.9L80.7 216.3L78.8 213.2L80.5 209.7L80.5 208.9L79.6 207.9L79.7 206.4L80.6 206.0L78.4 203.8L79.9 202.8L79.1 200.9L79.6 199.5L79.4 198.7L77.9 198.4L76.7 197.1L75.4 197.4L74.9 196.3L73.2 195.1L73.1 193.8L72.1 194.1L71.6 192.7L70.2 193.6L68.2 192.7L68.1 191.8L66.9 189.9L64.3 189.5L65.0 186.6L64.1 185.7L63.9 184.8L62.9 185.4L60.8 182.1L59.5 181.3L59.0 182.2L58.5 181.4L57.8 181.3L56.7 178.9L57.2 177.8L55.6 176.2L56.4 175.1L56.2 172.7L58.7 169.3L55.6 167.8L56.7 167.1L57.2 165.7L61.2 161.2L57.1 157.7L56.8 156.9L57.7 154.7L56.1 154.1L57.7 153.8L60.0 149.9L61.0 144.4L62.3 142.1L62.2 139.9L65.2 136.2L64.0 128.9L67.4 124.2L65.3 123.9L64.6 121.9L63.5 120.8L65.0 117.3L64.7 116.1L65.6 115.4L65.6 114.6L61.4 114.0L60.5 113.0L55.2 114.2L56.4 112.7L55.6 110.8L57.1 109.2L57.8 107.2L57.1 105.0L54.3 101.3L53.6 98.6L51.8 98.6L55.3 94.8L54.8 93.5L55.0 91.5L56.4 90.8L56.4 90.2L53.4 89.3L52.6 88.5L48.8 87.8L49.6 83.7L48.6 81.0L47.3 80.6L46.6 79.4L47.1 78.7L49.1 78.4L50.0 77.1L50.1 74.6L51.9 73.7L49.8 73.5L49.7 71.8L48.3 70.8L48.3 68.0L45.3 67.8L44.9 66.9L44.2 66.7L44.3 64.1L42.7 64.5L43.6 62.5L44.6 61.5L45.5 58.7L50.2 50.5L49.8 49.2L50.5 48.0L53.0 45.6L52.9 44.9L55.1 43.7L54.8 40.7L55.6 39.3L55.1 37.5L53.9 35.0L50.5 34.0L50.2 31.3L54.9 28.6L65.2 29.2L66.6 29.8L67.0 29.1L73.4 29.1L76.9 28.3L77.5 27.6L80.4 27.8L81.1 26.7L83.9 27.0L84.3 26.5L85.7 28.6L91.9 26.0L104.3 25.5L108.6 23.6L109.7 22.5L109.6 21.6L111.2 21.1L115.9 23.1L129.2 23.0L134.3 23.4L137.2 25.2L138.7 24.2L141.1 24.4L142.5 25.3L146.5 25.5L146.8 25.1ZM146.3 24.9L146.8 25.1L146.1 25.0L146.3 24.9Z" class="ce-borda"/>
         <text x="48" y="290" class="uf" text-anchor="middle">PIAUÍ</text><text x="367" y="242" class="uf" text-anchor="middle">RN</text><text x="348" y="338" class="uf" text-anchor="middle">PB</text><text x="252" y="405" class="uf" text-anchor="middle">PERNAMBUCO</text>
-        <text x="296" y="33" class="oceano" text-anchor="middle">OCEANO ATLÂNTICO</text>
         <text x="167" y="208" class="estado" text-anchor="middle">CEARÁ</text>
         <path class="rota-base" d="M257.3 91.6 C 247.3 171.6, 259.7 247.89999999999998, 199.7 357.9"/>
         <path class="rota" d="M257.3 91.6 C 247.3 171.6, 259.7 247.89999999999998, 199.7 357.9"/>
@@ -828,14 +927,14 @@
         <circle class="pin" cx="257.3" cy="91.6" r="7"/>
         <circle class="pin-pulso" cx="199.7" cy="357.9" r="7" style="animation-delay:1s"/>
         <circle class="pin" cx="199.7" cy="357.9" r="7"/>
-        <g class="rotulo"><rect x="271.3" y="77.6" width="92" height="28" rx="14"/><text x="317.3" y="96.6" text-anchor="middle">Fortaleza</text></g>
-        <g class="rotulo"><rect x="213.7" y="343.9" width="88" height="28" rx="14"/><text x="257.7" y="362.9" text-anchor="middle">Barbalha</text></g>
+        <g class="alvo" data-cidade="Fortaleza" role="button" tabindex="0" aria-label="Solicitar orçamento em Fortaleza"><circle cx="257.3" cy="91.6" r="16" fill="transparent"/><g class="rotulo"><rect x="271.3" y="77.6" width="92" height="28" rx="14"/><text x="317.3" y="96.6" text-anchor="middle">Fortaleza</text></g></g>
+        <g class="alvo" data-cidade="Barbalha" role="button" tabindex="0" aria-label="Solicitar orçamento em Barbalha"><circle cx="199.7" cy="357.9" r="16" fill="transparent"/><g class="rotulo"><rect x="213.7" y="343.9" width="88" height="28" rx="14"/><text x="257.7" y="362.9" text-anchor="middle">Barbalha</text></g></g>
       </svg>
     </div>
   </div>
 </section>
 
-<div class="miolo"><div class="energia" aria-hidden="true"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path class="en-base" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca dois" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/></svg></div></div>
+<div class="miolo"><div class="energia" aria-hidden="true"><svg viewBox="0 0 1200 80" preserveAspectRatio="none"><path class="en-base" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca en-brilho" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/><path class="en-faisca dois" pathLength="1" d="M0 40H330l9-5 8 12 9-30 11 50 9-36 8 16 7-7H760l7-4 7 9 8-20 9 30 7-21 6 6H1200"/></svg></div></div>
 <section class="sec final" id="contato">
   <div class="miolo">
     <div class="revela">
@@ -868,13 +967,15 @@
   <div class="miolo">
     <img src="assets/logo.webp" alt="Botelho Genset" width="640" height="373" loading="lazy">
     <span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.1 8.2-7.5 9.5-4.4-1.3-7.5-5-7.5-9.5V6z"/><path d="M8.8 12l2.3 2.3 4.2-4.6"/></svg>Distribuidor autorizado Geraforte</span>
-    <div class="rodape-linha">
+    <div class="rodape-icones">
       <a class="ig" id="linkIg" href="https://www.instagram.com/botelhogeradores/" target="_blank" rel="noopener" aria-label="Instagram da Botelho Genset">
         <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 5.5h11a5 5 0 0 1 5 5v11a5 5 0 0 1-5 5h-11a5 5 0 0 1-5-5v-11a5 5 0 0 1 5-5z"/><circle cx="16" cy="16" r="5"/><path d="M22 9.6h.1"/></svg>
       </a>
-      <span class="ponto" aria-hidden="true"></span>
-      <span class="local"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28.5s-8.5-7.8-8.5-14.6a8.5 8.5 0 0 1 17 0c0 6.8-8.5 14.6-8.5 14.6z"/><path d="M17 9.5l-2.8 4.6h3.6l-2.6 4.4"/></svg>Fortaleza e Barbalha-CE</span>
+      <a class="ig" id="linkWaRodape" href="https://wa.me/5585996581177" target="_blank" rel="noopener" aria-label="WhatsApp da Botelho Genset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.6z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9c-1-.4-2-1.4-2.4-2.4l.9-1-1-2z"/></svg></a>
+      <a class="ig" href="tel:+5585996581177" aria-label="Ligar para a Botelho Genset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+      <a class="ig" href="mailto:ederson@botelhogeradores.com.br" aria-label="E-mail da Botelho Genset"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
+    <span class="local"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 28.5s-8.5-7.8-8.5-14.6a8.5 8.5 0 0 1 17 0c0 6.8-8.5 14.6-8.5 14.6z"/><path d="M17 9.5l-2.8 4.6h3.6l-2.6 4.4"/></svg>Fortaleza e Barbalha-CE</span>
   </div>
 </footer>
 
@@ -1041,7 +1142,7 @@ var ADS_ROTULO_WHATSAPP = '';  // rótulo da conversão de clique no WhatsApp (o
 
 var msgPadrao = 'Olá, Botelho Genset! Vim pelo Instagram e gostaria de mais informações.';
 var linkPadrao = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msgPadrao);
-['linkFale','waFlutuante','linkPlantao'].forEach(function(id){ document.getElementById(id).href = linkPadrao; });
+['linkFale','waFlutuante','linkPlantao','linkWaRodape'].forEach(function(id){ document.getElementById(id).href = linkPadrao; });
 document.getElementById('linkIg').href = 'https://www.instagram.com/' + INSTAGRAM + '/';
 document.getElementById('linkTel').href = 'tel:+' + WHATSAPP;
 
@@ -1128,6 +1229,92 @@ document.addEventListener('click', function(e){
 
 })();
 
+/* Bases e mapa abrem o orçamento com a cidade */
+function pedeCidade(c){
+  var el = document.getElementById('cidade'); el.value = c;
+  marcaChips(document.querySelector('[data-alvo="cidade"]'), c); limpaErro(el);
+  origemClique = 'Mapa: ' + c; abrir('modalOrc');
+}
+document.querySelectorAll('[data-cidade]').forEach(function(b){
+  b.addEventListener('click', function(){ pedeCidade(b.dataset.cidade); });
+  b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pedeCidade(b.dataset.cidade); } });
+});
+/* Gerador da capa: elementos presos às posições reais da foto */
+(function(){
+  var hero = document.querySelector('.hero'), bg = document.querySelector('.hero-bg'), img = bg.querySelector('img'), gen = document.getElementById('gen');
+  if (!hero || !gen) return;
+  var IW = 2576, IH = 1717;
+  // pontos na foto (0 a 1)
+  var P = {lcd:[.501,.399,.524,.422], painel:[.514,.40], trava:[.627,.42], grade:[.60,.647], base:[.42,.80]};
+  gen.innerHTML = '<svg></svg>' +
+    '<div class="g-tag" data-t="trava"><i></i>Pronto para operar</div>';
+  var svg = gen.querySelector('svg');
+  var tags = {trava: gen.querySelector('[data-t="trava"]')};
+  function mapa(){
+    var hr = hero.getBoundingClientRect(), br = bg.getBoundingClientRect();
+    var pos = getComputedStyle(img).objectPosition.split(' ').map(function(v){ return parseFloat(v) / 100; });
+    var esc = Math.max(br.width / IW, br.height / IH), dw = IW * esc, dh = IH * esc;
+    var ox = br.left - hr.left + (br.width - dw) * pos[0], oy = br.top - hr.top + (br.height - dh) * (pos[1] || .5);
+    return function(x, y){ return [ox + x * dw, oy + y * dh]; };
+  }
+  function desenha(){
+    var m = mapa(), W = hero.clientWidth, mob = W < 960, h = '';
+    // C: ficha técnica
+    var lista = mob ? [] : [['trava', -34, 74, -1]];
+    tags.trava.style.display = mob ? 'none' : '';
+    lista.forEach(function(c){
+      var p = m(P[c[0]][0], P[c[0]][1]), q = [p[0] + c[1], p[1] + c[2]], t = tags[c[0]];
+      var tw = t.offsetWidth, th = t.offsetHeight, dir = c[3] || (q[0] + 18 + tw < W - 12 ? 1 : -1);
+      var fim = [q[0] + dir * 18, q[1]];
+      h += linha([p, q, fim]);
+      t.style.left = (dir > 0 ? fim[0] + 4 : fim[0] - 4 - tw) + 'px';
+      t.style.top = (fim[1] - th / 2) + 'px';
+    });
+    // D: cabo de energia do gerador até a linha da capa
+    var en = hero.querySelector('.energia');
+    if (en) {
+      var er = en.getBoundingClientRect(), hr = hero.getBoundingClientRect();
+      var e = [er.right - hr.left, er.top - hr.top + er.height / 2], s0 = m(P.base[0], P.base[1]), pts;
+      if (mob) { var xr = W - 9; pts = [s0, [s0[0], s0[1] + 14], [xr, s0[1] + 14], [xr, e[1]], e]; }
+      else { var dd = m(.423, .745); pts = [[dd[0], e[1]], e]; }
+      var d = cantos(pts, 14);
+      // contorno do gerador por onde o raio passa antes de sair pelo cabo
+      var contorno = [[.229,.686],[.228,.307],[.667,.307],[.666,.745],[.423,.745]].map(function(q){ return m(q[0], q[1]); });
+      var todo = cantos(contorno.concat(pts), 6);
+      h += '<path class="g-cabo" d="' + d + '"/><path class="g-contorno g-largo" d="' + todo + '"/><path class="g-contorno" d="' + todo + '"/><path class="g-cabo-f g-raio g-brilho" pathLength="1" d="' + todo + '"/><path class="g-cabo-f g-raio" pathLength="1" d="' + todo + '"/>';
+    }
+    // pontos por cima
+    [].concat(lista.map(function(c){ return m(P[c[0]][0], P[c[0]][1]); })).forEach(function(p){
+      h += '<circle class="g-ponto" cx="' + p[0] + '" cy="' + p[1] + '" r="4"/>';
+    });
+    svg.innerHTML = h;
+    svg.querySelectorAll('.g-linha').forEach(function(l){ l.style.setProperty('--l', Math.ceil(l.getTotalLength()) + 1); });
+  }
+  function linha(pts){ return '<path class="g-linha" d="M' + pts.map(function(p){ return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join('L') + '"/>'; }
+  function cantos(pts, r){
+    var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    for (var i = 1; i < pts.length - 1; i++) {
+      var a = pts[i - 1], b = pts[i], c = pts[i + 1];
+      var l1 = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, l2 = Math.hypot(c[0] - b[0], c[1] - b[1]) || 1, k = Math.min(r, l1 / 2, l2 / 2);
+      var p1 = [b[0] - (b[0] - a[0]) / l1 * k, b[1] - (b[1] - a[1]) / l1 * k], p2 = [b[0] + (c[0] - b[0]) / l2 * k, b[1] + (c[1] - b[1]) / l2 * k];
+      d += 'L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + 'Q' + b[0].toFixed(1) + ' ' + b[1].toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    var z = pts[pts.length - 1]; return d + 'L' + z[0].toFixed(1) + ' ' + z[1].toFixed(1);
+  }
+  var t; function agenda(){ clearTimeout(t); t = setTimeout(desenha, 120); }
+  desenha();
+  addEventListener('resize', agenda);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(desenha);
+  setTimeout(function(){ desenha(); gen.classList.add('on'); }, 1700);
+})();
+
+/* Pausa animações contínuas fora da tela */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(ents){ ents.forEach(function(en){ en.target.classList.toggle('fora', !en.isIntersecting); }); }, {rootMargin:'100px'});
+  document.querySelectorAll('.fios,.energia,.faixa-caixa,.cinetico,.mapa,.processo-lista,.hero-bg,.ev,.gen').forEach(function(el){ io.observe(el); });
+})();
+
 /* Faixa */
 (function(){
   var t = ['Equipe própria','Atendimento 24h','Distribuidor autorizado Geraforte','Locação','Manutenção','Venda de geradores e peças','Assistência técnica','Análise de energia','Fortaleza e Barbalha'];
@@ -1164,7 +1351,7 @@ document.addEventListener('click', function(e){
 
 /* Revelar ao rolar */
 (function(){
-  var els = document.querySelectorAll('.revela,.curva,.bandas');
+  var els = document.querySelectorAll('.revela,.curva,.bandas,.ev');
   if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('visto'); }); return; }
   var io = new IntersectionObserver(function(ents){
     ents.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('visto'); io.unobserve(en.target); } });
@@ -1173,7 +1360,7 @@ document.addEventListener('click', function(e){
 })();
 
 /* Serviços */
-document.querySelectorAll('.serv[data-servico]').forEach(function(b){
+document.querySelectorAll('.serv[data-servico],.serv-loc').forEach(function(b){
   b.addEventListener('click', function(){ preencheServico(b.dataset.servico); abrir('modalOrc'); });
 });
 
@@ -1500,7 +1687,7 @@ function enviarOrcamento(){
   document.querySelector('#topoOrc .progresso').style.display = 'none';
   document.getElementById('etapaNome').style.display = 'none';
   document.getElementById('baseOrc').style.display = 'none';
-  setTimeout(function(){ window.location.href = linkWA; }, 150);
+  setTimeout(function(){ window.location.href = linkWA; }, 60);
 }
 function resetForm(){
   enviado = false; etapa = 1;
