@@ -731,6 +731,15 @@
   @keyframes picoCapa{0%,88%,100%{opacity:0}90%{opacity:.55}91.5%{opacity:0}93%{opacity:.35}95%{opacity:0}}
   .hero-bg::after{z-index:2}
   @media (prefers-reduced-motion:reduce){.hero-bg::before{animation:none}}
+  @media (min-width:960px){
+    .hero-bg{left:auto;right:0;width:min(68vw,1200px);top:-18%;height:118%}
+    .hero-bg img{object-position:30% 50%}
+    .hero-grade{padding-block:160px 80px!important}
+  }
+  @media (min-width:960px) and (max-width:1199px){
+    .hero-bg{width:66vw;top:0;height:100%}
+    .hero-bg img{object-position:40% 55%}
+  }
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -1247,9 +1256,9 @@ document.querySelectorAll('[data-cidade]').forEach(function(b){
   // pontos na foto (0 a 1)
   var P = {lcd:[.501,.399,.524,.422], painel:[.514,.40], trava:[.627,.42], grade:[.60,.647], base:[.42,.80]};
   gen.innerHTML = '<svg></svg>' +
-    '<div class="g-tag" data-t="trava"><i></i>Pronto para operar</div>';
+    '';
   var svg = gen.querySelector('svg');
-  var tags = {trava: gen.querySelector('[data-t="trava"]')};
+  var tags = {};
   function mapa(){
     var hr = hero.getBoundingClientRect(), br = bg.getBoundingClientRect();
     var pos = getComputedStyle(img).objectPosition.split(' ').map(function(v){ return parseFloat(v) / 100; });
@@ -1260,8 +1269,7 @@ document.querySelectorAll('[data-cidade]').forEach(function(b){
   function desenha(){
     var m = mapa(), W = hero.clientWidth, mob = W < 960, h = '';
     // C: ficha técnica
-    var lista = mob ? [] : [['trava', -34, 74, -1]];
-    tags.trava.style.display = mob ? 'none' : '';
+    var lista = [];
     lista.forEach(function(c){
       var p = m(P[c[0]][0], P[c[0]][1]), q = [p[0] + c[1], p[1] + c[2]], t = tags[c[0]];
       var tw = t.offsetWidth, th = t.offsetHeight, dir = c[3] || (q[0] + 18 + tw < W - 12 ? 1 : -1);
